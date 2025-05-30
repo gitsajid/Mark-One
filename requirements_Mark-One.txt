@@ -18,7 +18,6 @@ face_recognition_models
 face_recognition
 
 nltk
-numpy
 scikit-learn
 pandas
 
