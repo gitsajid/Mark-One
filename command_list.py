@@ -2,7 +2,11 @@ activating_command = [
     "wake up", "turn on", "activate", "initialize"
 ]
 
+deactivating_command = [
+    "exit", "sleep", "turn off"
+]
+
 about_mark_one = [
-    "yourself", "tell about yourself", "who are you"
+    "yourself", "about yourself", "who are you"
     "what are you"
 ]

@@ -19,8 +19,8 @@ def getTime():
         tag = "PM"
         
     telltime = f"Current time is {bd_hr} {mnt} {tag}"
-    print(telltime)
     
+    print(telltime)
     return telltime
 
 class BatteryStatus:

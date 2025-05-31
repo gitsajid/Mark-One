@@ -1,7 +1,9 @@
 # MY IMPORTS
 from Interactions.TextToSpeech import TTS
 from Interactions.SpeechToText import STT
+import RealTimeStatus
 import command_list
+from Authentications.FaceRecognition import FaceRecognition
 
 # PYTHON IMPORTS
 import datetime
@@ -26,18 +28,31 @@ def initialize_MarkOne():
         command_query = command_query.lower().strip()
         print(Fore.RESET + ">>> ", Fore.YELLOW + command_query)
         
-        if command_query in command_list.about_mark_one:
+        if command_query in command_list.deactivating_command:
+            print("Deactivating...")
+            TTS("You can call me anytime.")
+            exit()
+            
+        elif command_query in command_list.about_mark_one:
             print("About Mark One...")
             TTS("Hello, I am Mark One. A virtual assistant.")
             
+        elif "time" in command_query:
+            print("Telling time...")
+            TTS(RealTimeStatus.getTime())
+        
+        elif "power status" in command_query:
+            power_status = RealTimeStatus.BatteryStatus().getBatteryStatus()
+            TTS(power_status)
+            
         
 if __name__ == "__main__":
-    activate = True
+    # PART OF AUTHENTICATION
+    activate = FaceRecognition().run_recognition()
     
     if activate:
         print(Fore.GREEN + "Initializing...")
         
-        TTS("Initializing.")
         GreetMe()
         initialize_MarkOne()
         
