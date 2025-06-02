@@ -10,3 +10,8 @@ about_mark_one = [
     "yourself", "about yourself", "who are you"
     "what are you"
 ]
+
+AppOpen = ["start", "open", "turn on"]
+AppClose = ["close", "shut", "turn off"]
+
+questions = ["what", "when", "why", "how", "tell"]
