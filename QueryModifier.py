@@ -1,5 +1,5 @@
 from Interactions.SpeechToText import STT
-from Interactions.TextToSpeech import TTS
+
 import query_library
 import re
 from nltk.tokenize import word_tokenize
@@ -14,13 +14,15 @@ def SingleCommandModification(query, commands):
     return query.strip()
 
 def QueryFilter(query):
-    for word in query.split(" "):
-        if word in query_library.questions:
-            filtered_query = "Asking" + ", " + query + "?"
-        else:
-            filtered_query = query
-            
-    return filtered_query
+    filtered_query = query
+    
+    if any(word in query_library.wh_questions for word in query.split()):
+        filtered_query = query + "?"
+        
+    elif any(query.startswith(verb) for verb in query_library.verbs):
+        filtered_query = query + "?"
+        
+    return filtered_query.strip()
 
 def PreProcess(query):
     query = re.sub(r"[^\w\s]", "", query.lower())

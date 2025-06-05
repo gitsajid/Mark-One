@@ -23,7 +23,6 @@ def GreetMe():
         TTS("Good evening. At your service,sir.")
     
     
-
 def initialize_MarkOne():
     while True:
         print(Fore.BLUE + "Listening...")

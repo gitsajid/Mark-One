@@ -14,4 +14,5 @@ about_mark_one = [
 AppOpen = ["start", "open", "turn on"]
 AppClose = ["close", "shut", "turn off"]
 
-questions = ["what", "when", "why", "how", "tell"]
+wh_questions = ["what", "when", "why", "how", "tell"]
+verbs = ["am", "is", "are", "was", "were", "shall", "should", "may", "might", "can", "could"]
