@@ -1,3 +1,4 @@
+# PYTHON IMPORTS
 import nltk
 from nltk.stem import WordNetLemmatizer
 import pandas
@@ -8,10 +9,12 @@ import pickle
 from dotenv import dotenv_values
 from colorama import Fore
 
+# MY IMPORTS
 from QueryModifier import PreProcess
 from Interactions.SpeechToText import STT
 from Interactions.TextToSpeech import TTS
 
+# FILE PATHS
 chats_file_path = r"ChatBOT\chats.json"
 processed_data_file_path = r"ChatBOT\processed_data.json"
 model_file_path = r"ChatBOT\tfidf_model.pkl"
