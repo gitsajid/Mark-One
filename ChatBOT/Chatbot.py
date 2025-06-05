@@ -12,9 +12,12 @@ from QueryModifier import PreProcess
 from Interactions.SpeechToText import STT
 from Interactions.TextToSpeech import TTS
 
+chats_file_path = r"ChatBOT\chats.json"
+processed_data_file_path = r"ChatBOT\processed_data.json"
+model_file_path = r"ChatBOT\tfidf_model.pkl"
+
 nltk.download("punkt")
 nltk.download("wordnet")
-
 
 lemmatizer = WordNetLemmatizer()
 
@@ -24,7 +27,7 @@ Username = env_vars.get("Username")
 
 # LOAD DATA
 try:
-    with open(r"ChatBOT\chats.json", "r") as f:
+    with open(chats_file_path, "r") as f:
         data = json.load(f)
     
 except (FileNotFoundError, json.JSONDecodeError):
@@ -40,7 +43,7 @@ data_frame["processed_input"] = data_frame["input"].apply(PreProcess)
 data_frame["processed_output"] = data_frame["output"].apply(PreProcess)
 
 # SAVE PROCESSED DATA
-data_frame.to_json(r"ChatBOT\processed_data.json", indent=4)
+data_frame.to_json(processed_data_file_path, indent=4)
 
 # MODEL
 vectorizer = TfidfVectorizer()
@@ -99,7 +102,7 @@ def Get_Response(user_input):
             data.append(new_entry)
             
             # SAVE TO FILE
-            with open(r"ChatBOT\chats.json", "w") as f:
+            with open(chats_file_path, "w") as f:
                 json.dump(data, f, indent=4)
                 
             # UPDATE THE MODEL
@@ -117,7 +120,7 @@ def Get_Response(user_input):
     return data_frame.iloc[best_match_idx]["output"]
 
 # SAVE MODEL
-with open(r"ChatBOT\tfidf_model.pkl", "wb") as f:
+with open(model_file_path, "wb") as f:
     pickle.dump(vectorizer, f)
     
     
